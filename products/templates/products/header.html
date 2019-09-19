@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    {% load static %}
+
+    <!--
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    -->
+    
+    <link rel="stylesheet" href="{% static 'products/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'products/css/main.css' %}">
+
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'home' %}">Eventer</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}">Events <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Create Event</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Create Event
+                        </a>
+                        <div class="dropdown-menu rounded-0 border-top-0 bg-light" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Formal Event</a>
+                            <a class="dropdown-item" href="#">Informal Event</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Promote Event</a>
+                        </div>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0" action="/s/" role="search">
+                    <div class="nav">
+                        <a class="nav-link text-dark px-3" href="{% url 'cart' %}">Cart</a>
+                    </div>
+                    <!--if cart is empty, the badge doesn't show
+                    <a class="badge text-light badge-dark">{{request.session.items_total}}</a>-->
+                    <a class="badge text-light badge-dark">
+                        {% if not request.session.items_total %}
+                            0
+                        {% else %}
+                            {{request.session.items_total}}
+                        {% endif %}
+                    </a>
+                    <input class="form-control border-top-0 border-right-0 border-left-0 bg-light rounded-0 shadow-none mr-sm-2" type="search" name="q" placeholder="Search" id="search-bar" aria-label="Search">
+                    <button class="btn btn-dark rounded-sm my-2 my-sm-0 text-light" type="submit">Search</button>
+                </form>
+
+            </div>
+        </nav>
+    </section>
+
+{% block content %}
+{% endblock %}
+
+    <footer>
+
+        {% if exist %}
+        <div class="fixed-bottom">
+        {% endif %}
+
+            <section>
+                <div class="bg-dark">
+                    <div class="container">
+                        <nav class="navbar navbar-expand-lg navbar-dark">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#"><img src="{% static 'products/img/icons/facebook-square.svg' %}" class="img-fluid" height="24px" width="24px" alt=""></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><img src="{% static 'products/img/icons/google-plus-square.svg' %}" class="img-fluid" height="24px" width="24px" alt=""></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><img src="{% static 'products/img/icons/twitter-square.svg' %}" class="img-fluid" height="24px" width="24px" alt=""></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><img src="{% static 'products/img/icons/linkedin.svg' %}" class="img-fluid" height="24px" width="24px" alt=""></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><img src="{% static 'products/img/icons/instagram.svg' %}" class="img-fluid" height="24px" width="24px" alt=""></a>
+                                </li>
+                            </ul>
+
+                            <nav class="navbar float-right navbar-light">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link"><small>info@website.com</small></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"><small>Montgomery Road, Yaba Lagos</small></a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </nav>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="bg-dark ">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <p class="text-center text-muted">&copy; 2019, Eventer</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>-->
+        
+        <script src="{% static 'products/js/wow.min.js' %}"></script>
+        <script src="{% static 'products/js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'products/js/popper.min.js' %}"></script>
+        <script src="{% static 'products/js/bootstrap.min.js' %}"></script>
+
+    </footer>
+
+</html>

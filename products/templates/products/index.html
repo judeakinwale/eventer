@@ -1,0 +1,87 @@
+{% extends 'products/header.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <section>
+        <div class="jumbotron jumbotron-fluid px-3 text-center bg-img-main">
+            <h1 class="display-3">Hello, world!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+                featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <p class="lead">
+                <a class="btn btn-dark btn-lg rounded-sm" href="#" role="button">Learn more</a>
+            </p>
+        </div>
+    </section>
+</head>
+
+<body>
+    <section class="mt-3">
+        <div class="container">
+            {% if query %}
+            <h2>Searched for: {{query}}</h2>
+            <hr>
+            {% endif %}
+            <div class="card-deck">
+                {% for product in products %}
+                <div class="card border-light rounded-sm shadow">
+                    <a href="{% url 'single' product.slug %}">
+                        {% for image in product.productimage_set.all %}
+                        <img class="card-img-top" src="{% static 'static_root/media/' %}{{image.image}}" alt="Card image cap" srcset="">
+                        {% endfor %}
+                    </a>
+                    <div class="card-body">
+                        <div class="nav">
+                            <a class="nav-link text-dark p-0 m-0" class="text-dark" href="{% url 'single' product.slug %}"><h4 class="card-title">{{product.title}}</h4></a>
+                        </div>
+                        <p class="card-text text-truncate">{{product.description}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">₦{{product.price}}</small>
+                        <p><small><a class="nav-link px-0 pb-0 m-0 text-dark" href="{% url 'add_to_cart' product.slug %}">Add to cart</a><a class="text-dark float-right d-none" href="">Add to wishlist</a></small></p>
+                    </div>
+                </div>
+                {% cycle '' '' '</div></div></section><section class="mt-3"><div class="container"><div class="card-deck">' %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="mt-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            {% if products.has_previous %}
+                            <a class="page-link text-dark" href="?page = 1" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                        {% if products.has_previous %}
+                        <li class="page-item"><a class="page-link text-dark" href="?page={{products.previous_page_number}}">{{products.previous_page_number}}</a></li>
+                        {% endif %}
+                        <li class="page-item"><a class="page-link text-dark" href="?page={{products.number}}">{{products.number}}</a></li>
+                        {% if products.has_next %}
+                        <li class="page-item"><a class="page-link text-dark" href="?page={{products.next_page_number}}">{{products.next_page_number}}</a></li>
+                        {% endif %}
+                        <li class="page-item">
+                            {% if products.has_next %}
+                            <a class="page-link text-dark" href="?page={{products.paginator.num_pages}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+</body>
+
+{% endblock %}

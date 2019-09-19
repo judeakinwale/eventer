@@ -1,0 +1,124 @@
+{% extends 'products/header.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% for image in product.productimage_set.all %}
+    <style>
+        
+    .bg-img-single{
+    background: url("{% static 'static_root/media/' %}{{image.image}}");/**/
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    }
+
+    </style>
+    {% endfor %}
+
+    <section>
+        <div class="jumbotron jumbotron-fluid mb-2 bg-img-single">
+            <div class="container">
+                <h1 class="display-3 text-secondary">
+                    {{product.title}}
+                    <button type="button" class="btn btn-dark btn-lg rounded-sm float-right" data-toggle="modal" data-target="#exampleModalCenter" >Register</button>
+                    <!-- Modal -->
+                    <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                            <div class="modal-content rounded-sm">
+                                <form class="form-inline" action="{% url 'add_to_cart' product.slug %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="modal-body">
+                                        <div class="float-left">
+                                            <h5>Quantity</h5>
+                                        </div>
+                                        <div class="float-right">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <input class="form-control rounded-sm border-0 bg-secondary shadow-none text-light" name="qty" type="number" style="width: 100%" value="1" max="1000" min="1">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" style="width: 100%">
+                                        <input class="btn btn-dark btn-block rounded-sm" type="submit" value="Add to Cart">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </h1>
+                <p class="lead text-secondary">Event tagline</p>
+            </div>
+        </div>
+    </section>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light pb-3">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link d-none" href="#">Add to wishlist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cart' %}">Add to cart</a>
+                    </li>
+                </ul>
+                <nav class="navbar float-right navbar-light">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">View similar</a>
+                        </li>
+                    </ul>
+                </nav>
+            </nav>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row pb-5">
+                <div class="col-sm float-left px-5">
+                    <h5>Venue</h5>
+                    <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h6>
+                </div>
+                <div class="col-sm float-right px-5">
+                    <h5>Date</h5>
+                    <h6>Fugit omnis pariatur, deserunt eveniet veritatis nulla.</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <h5>Description</h5>
+            <p>{{product.description}}</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, ullam! Sint quaerat delectus natus, ad at
+                officia. Ullam, ducimus praesentium quaerat voluptate necessitatibus modi saepe iste magnam cum nam ut
+                eaque, sequi quos amet deserunt hic a impedit illo aut exercitationem quasi! Facilis animi labore
+                nostrum, deserunt consequatur placeat, repellat architecto corporis a magnam iure eligendi soluta unde
+                amet quibusdam aut. Id fugit ullam quibusdam quod, nulla eveniet! Architecto dolores officiis distinctio
+                amet quia. Dolor, corporis atque tempora corrupti a harum, et, soluta omnis sed quae sit dolorum autem!
+                Repellat sed rerum nemo vero nam quibusdam ab sequi atque possimus nostrum, excepturi exercitationem
+                dolorem ipsum dolorum dignissimos perspiciatis illo perferendis corporis, saepe hic distinctio dolore?
+                Animi asperiores maxime ea dolor.</p>
+            <h6>Other Details and Contact information</h6>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <p class="pt-5">Tags:
+                <a class="text-dark" href="">Event,</a>
+                <a class="text-dark" href="">Conference,</a>
+            </p>
+        </div>
+    </section>
+</body>
+
+{% endblock %}
