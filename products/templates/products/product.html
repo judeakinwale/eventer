@@ -8,7 +8,7 @@
     <style>
         
     .bg-img-single{
-    background: url("{% static 'static_root/media/' %}{{image.image}}");/**/
+    background: url("{% static 'media/' %}{{image.image}}");/**/
     height: 500px; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
@@ -22,7 +22,7 @@
         <div class="jumbotron jumbotron-fluid mb-2 bg-img-single">
             <div class="container">
                 <h1 class="display-3 text-secondary">
-                    {{product.title}}
+                    <span class="white-filter">{{product.title}}</span>
                     <button type="button" class="btn btn-dark btn-lg rounded-sm float-right" data-toggle="modal" data-target="#exampleModalCenter" >Register</button>
                     <!-- Modal -->
                     <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </h1>
-                <p class="lead text-secondary">Event tagline</p>
+                <p class="lead text-secondary"><span class="white-filter p-1">Event tagline</span></p>
             </div>
         </div>
     </section>
