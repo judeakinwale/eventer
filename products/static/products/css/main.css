@@ -1,0 +1,22 @@
+
+.bg-img-main{ 
+    background:url(../img/13.jpg);
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+#a-0{
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+}
+
+.white-filter{
+    background-color: rgba(240, 255, 255, 0.678);
+}
+
+.txt-shadow{
+    text-shadow: 2px;
+}
