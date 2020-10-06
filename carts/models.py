@@ -4,8 +4,8 @@ from products.models import Product
 
 
 class CartItem(models.Model):
-    cart = models.ForeignKey('Cart', null=True, blank=True, on_delete=True)
-    product = models.ForeignKey(Product, on_delete=True)
+    cart = models.ForeignKey('Cart', null=True, blank=True, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     line_total = models.DecimalField(default=1000.99, max_digits=1000, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)

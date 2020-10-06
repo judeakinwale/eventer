@@ -55,7 +55,16 @@
 
                 <form class="form-inline my-2 my-lg-0" action="/s/" role="search">
                     <div class="nav">
-                        <a class="nav-link text-dark px-3" href="{% url 'cart' %}">Cart</a>
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                                <a class="nav-link text-dark" href="{% url 'logout' %}">Logout</a>
+                            {% else %}
+                                <a class="nav-link text-dark" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark px-3" href="{% url 'cart' %}">Cart</a>
+                        </li>
                     </div>
                     <!--if cart is empty, the badge doesn't show
                     <a class="badge text-light badge-dark">{{request.session.items_total}}</a>-->
@@ -73,6 +82,7 @@
             </div>
         </nav>
     </section>
+    {% include "includes/messages.html" %}
 
 {% block content %}
 {% endblock %}
@@ -147,7 +157,11 @@
         <script src="{% static 'products/js/jquery-3.3.1.min.js' %}"></script>
         <script src="{% static 'products/js/popper.min.js' %}"></script>
         <script src="{% static 'products/js/bootstrap.min.js' %}"></script>
-
+        <script>
+            $(document).ready(function(){
+                $('.toast').toast('show');
+            });
+        </script>
     </footer>
 
 </html>

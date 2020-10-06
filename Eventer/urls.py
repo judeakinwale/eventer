@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from products.views import products, single, search, about
 from carts.views import view, add_to_cart, remove_from_cart
-from registration.views import register
+from registration.views import register, logout_request, login_request
 from orders.views import checkout, orders
 
 urlpatterns = [
@@ -33,6 +33,8 @@ urlpatterns = [
     path('cart/<id>\d+/', remove_from_cart, name='remove_from_cart'),
     path('cart/<slug>[\w-]+/', add_to_cart, name='add_to_cart'),
     path("register/", register, name="register"),
+    path("logout/", logout_request, name="logout"),
+    path("login/", login_request, name="login"),
     path("about/", about, name="about"),
     #path("partners/", partners, name="partners"),
     #path("create_event/", create_event, name="create_event"),

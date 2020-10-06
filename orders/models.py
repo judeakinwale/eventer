@@ -12,10 +12,10 @@ STATUS_CHOICES = (
 )
 
 class Order(models.Model):
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     # address
     order_id = models.CharField(max_length=120, default="abc", unique=True)
-    cart = models.ForeignKey(Cart, on_delete=True)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     sub_total = models.DecimalField(default=1000.99, max_digits=1000, decimal_places=2)
     tax_total = models.DecimalField(default=1000.99, max_digits=1000, decimal_places=2)
     final_total = models.DecimalField(default=1000.99, max_digits=1000, decimal_places=2)

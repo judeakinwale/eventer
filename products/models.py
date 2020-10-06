@@ -23,7 +23,7 @@ class Product(models.Model):
         return self.price
     
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, null=True, on_delete=True)
+    product = models.ForeignKey(Product, null=True, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='products/static/img/', default='products/static/img/1.jpg')
     active = models.BooleanField(default=True)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
