@@ -1,1 +1,3 @@
 # eventer
+
+install requirements.txt
